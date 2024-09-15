@@ -11,13 +11,15 @@ const SearchBox = (props) =>{
     setSearchData(e.target.value);
    }
     const handleValue = (e) =>{
-      const regex = /^[a-zA-Z]+$/; // Regular expression to match only letters
-    if(e.key === 'Enter' && e.target.value.trim() !== "" && regex.test(e.target.value)){
+      const regex = /^[a-zA-Z]+(\s+[a-zA-Z]+)*$/;
+      if(e.key === 'Enter' && e.target.value.trim() !== "" && regex.test(e.target.value)){
          setInputData((prevInputData) => [
              ...prevInputData , 
-             {value : e.target.value,
+             {
+              value : e.target.value,
               id : Date.now(),
-              checked : false
+              checked : false,
+              updateInput : false,
             },
 
          ]);
